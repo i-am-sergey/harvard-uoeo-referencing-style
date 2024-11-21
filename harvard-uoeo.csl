@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>Harvard (University of Essex Online)</title>
+    <title-short>Harvard, UoEO</title-short>
+    <id>harvard-uoeo</id>
+    <updated>2024-11-21T18:53:03+00:00</updated>
+  </info>
+  <locale>
+    <date text-case="capitalize-first" delimiter=" " form="text">
+      <date-part name="day"/>
+      <date-part name="month"/>
+      <date-part name="year"/>
+    </date>
+    <terms>
+      <term name="anonymous">anonymous</term>
+      <term name="anonymous" form="short">anon</term>
+      <term name="available at">available from</term>
+    </terms>
+  </locale>
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="symbol" et-al-min="3" et-al-use-first="1"/>
+      <et-al/>
+      <substitute>
+        <text macro="anonymous"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="date-year-citation">
+    <choose>
+      <if match="all" variable="issued">
+        <date date-parts="year" form="text" variable="issued"/>
+        <text variable="year-suffix" quotes="false"/>
+      </if>
+      <else>
+        <text term="no date" form="short" text-case="uppercase"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="author">
+    <names variable="author" suffix=".">
+      <name and="symbol" delimiter-precedes-last="never" et-al-min="7" et-al-use-first="1" initialize-with="." name-as-sort-order="all"/>
+      <et-al/>
+      <substitute>
+        <text macro="anonymous"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="main-title">
+    <choose>
+      <if type="book report thesis" match="any">
+        <text variable="title" font-style="italic" suffix="."/>
+      </if>
+      <else-if type="chapter paper-conference" match="any">
+        <text variable="title" quotes="false" prefix="‘" suffix="’"/>
+        <text value=","/>
+      </else-if>
+      <else>
+        <text variable="title" suffix="."/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="in">
+    <choose>
+      <if type="chapter" match="any">
+        <text term="in" suffix=":"/>
+      </if>
+    </choose>
+  </macro>
+  <macro name="editors">
+    <names variable="editor">
+      <name and="symbol" delimiter-precedes-last="never" et-al-min="7" et-al-use-first="1"/>
+      <et-al/>
+      <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+  <macro name="container-title">
+    <text variable="container-title" font-style="italic" suffix="."/>
+  </macro>
+  <macro name="thesis-type">
+    <choose>
+      <if type="thesis" match="any">
+        <text variable="genre"/>
+      </if>
+    </choose>
+  </macro>
+  <macro name="conference-information">
+    <group delimiter=" , " suffix=".">
+      <text variable="event-place"/>
+      <date form="text" variable="event-date"/>
+    </group>
+  </macro>
+  <macro name="volume-issue">
+    <group>
+      <text variable="volume-title"/>
+      <group prefix="(" suffix=")">
+        <choose>
+          <if match="any" variable="issue">
+            <text variable="issue"/>
+          </if>
+          <else-if match="any" variable="part-title">
+            <text variable="part-title"/>
+          </else-if>
+        </choose>
+      </group>
+    </group>
+    <choose>
+      <if match="any" variable="volume-title issue part-title">
+        <choose>
+          <if type="article article-journal article-magazine article-newspaper" match="any">
+            <text value=":"/>
+          </if>
+          <else>
+            <text value="."/>
+          </else>
+        </choose>
+      </if>
+    </choose>
+  </macro>
+  <macro name="edition">
+    <text variable="edition" suffix="."/>
+  </macro>
+  <macro name="publication-information">
+    <group delimiter=": " suffix=".">
+      <choose>
+        <if type="paper-conference" match="none">
+          <text variable="publisher-place" strip-periods="false"/>
+        </if>
+      </choose>
+      <text variable="publisher"/>
+    </group>
+  </macro>
+  <macro name="pages">
+    <text variable="page" suffix="."/>
+  </macro>
+  <macro name="source">
+    <choose>
+      <if match="any" variable="DOI">
+        <text variable="DOI" prefix="DOI: https://doi.org/"/>
+      </if>
+      <else-if match="any" variable="URL">
+        <group delimiter=" " suffix=".">
+          <text term="available at" text-case="capitalize-first" suffix=":"/>
+          <text variable="URL"/>
+          <group delimiter=" " prefix="[" suffix="]">
+            <text term="accessed" text-case="capitalize-first"/>
+            <date form="text" variable="accessed"/>
+          </group>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+  <macro name="anonymous">
+    <text term="anonymous" form="short" text-case="capitalize-first"/>
+  </macro>
+  <macro name="date-year-references">
+    <choose>
+      <if match="any" variable="issued">
+        <date date-parts="year" form="text" variable="issued"/>
+      </if>
+      <else>
+        <text term="no date" form="short" text-case="uppercase"/>
+      </else>
+    </choose>
+  </macro>
+  <citation disambiguate-add-year-suffix="true">
+    <sort>
+      <key variable="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout delimiter="; " prefix="(" suffix=")">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <text macro="date-year-citation"/>
+      </group>
+    </layout>
+  </citation>
+  <bibliography>
+    <sort>
+      <key variable="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author"/>
+        <text macro="date-year-references" prefix="(" suffix=")"/>
+        <text macro="main-title"/>
+        <text macro="in"/>
+        <text macro="editors"/>
+        <text macro="container-title"/>
+        <text macro="thesis-type" suffix="."/>
+        <text macro="conference-information"/>
+        <text macro="volume-issue"/>
+        <text variable="edition"/>
+        <text macro="publication-information"/>
+        <text macro="pages"/>
+        <text macro="source"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
